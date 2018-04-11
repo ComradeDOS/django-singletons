@@ -23,7 +23,7 @@ class SingletonModelAdmin(admin.ModelAdmin):
 
         info = self.model._meta.app_label, self.model._meta.model_name
 
-        urlpatterns = (
+        urlpatterns = [
             url(r'^history/$',
                 wrap(self.history_view),
                 {'object_id': '1'},
@@ -32,7 +32,7 @@ class SingletonModelAdmin(admin.ModelAdmin):
                 wrap(self.change_view),
                 {'object_id': '1'},
                 name='%s_%s_changelist' % info),
-        )
+        ]
         return urlpatterns
         
     def response_change(self, request, obj):
